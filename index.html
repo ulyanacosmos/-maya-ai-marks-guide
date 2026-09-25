@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как проверить и очистить AI-метки в Claude</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital@1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#710C04}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#1a1a1a;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid #f0f0f0;position:sticky;top:0;background:#fff;z-index:100}
+.nav__logo{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:22px;color:#111;letter-spacing:-1px}
+.nav__logo-name{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:400;font-style:italic;color:#888;letter-spacing:.5px}
+.container{max-width:740px;margin:0 auto;padding:0 24px}
+.hero{padding:60px 0 48px}
+.badge{display:inline-block;font-size:11px;font-weight:600;color:var(--accent);border:1px solid var(--accent);padding:5px 16px;margin-bottom:20px;letter-spacing:2px;text-transform:uppercase}
+.hero h1{font-family:'Libre Baskerville',Georgia,serif;font-size:38px;font-weight:700;line-height:1.25;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero__desc{font-size:18px;color:#666;line-height:1.7}
+.hero__meta{font-size:14px;color:#999;margin-top:16px;letter-spacing:1px}
+.intro-bold{font-size:18px;font-weight:700;line-height:1.65;color:#1a1a1a;padding:40px 0 16px}
+.intro-text{font-size:17px;color:#444;line-height:1.75;padding-bottom:48px}
+.section-heading{font-family:'Libre Baskerville',Georgia,serif;font-size:30px;font-weight:700;line-height:1.3;padding:56px 0 24px;border-top:1px solid #e8e8e8}
+.section-heading span{color:var(--accent);margin-right:8px}
+.section-heading em{font-style:italic;color:var(--accent)}
+.highlight{background:#f5f5f5;padding:20px 24px;margin:24px 0;font-size:16px;line-height:1.75;color:#444}
+.sub-heading{font-family:'Libre Baskerville',Georgia,serif;font-size:22px;font-weight:700;padding:36px 0 16px}
+.text{font-size:17px;color:#444;line-height:1.75;margin-bottom:16px}
+.guide-list{list-style:none;margin:16px 0 24px}
+.guide-list li{font-size:16px;line-height:1.75;color:#444;padding:8px 0 8px 20px;position:relative;border-bottom:1px solid #f0f0f0}
+.guide-list li:last-child{border-bottom:none}
+.guide-list li::before{content:'';position:absolute;left:0;top:16px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.guide-list li strong{color:#1a1a1a}
+.prompt-box{background:#f5f5f5;padding:36px;margin:32px 0}
+.prompt-box__title{font-family:'Libre Baskerville',Georgia,serif;font-size:20px;font-weight:700;color:var(--accent);margin-bottom:6px}
+.prompt-box__subtitle{font-size:13px;color:#888;margin-bottom:20px}
+.prompt-box__text{font-size:15px;line-height:1.8;color:#444;font-style:italic;white-space:pre-wrap}
+.step-list{list-style:none;margin:16px 0 24px;counter-reset:steps}
+.step-list li{counter-increment:steps;font-size:16px;line-height:1.75;color:#444;padding:9px 0 9px 44px;position:relative;border-bottom:1px solid #f0f0f0}
+.step-list li::before{content:counter(steps,decimal-leading-zero);position:absolute;left:0;font-family:'Libre Baskerville',Georgia,serif;font-style:italic;color:var(--accent)}
+.scenario-card{border:1px solid #e8e8e8;padding:32px;margin:24px 0;background:#f9f9f9}
+.scenario-card__num{font-family:'Libre Baskerville',Georgia,serif;font-style:italic;font-size:14px;color:var(--accent);letter-spacing:1px;margin-bottom:8px}
+.scenario-card__title{font-family:'Libre Baskerville',Georgia,serif;font-size:20px;font-weight:700;line-height:1.4;margin-bottom:14px}
+.scenario-card__tip{background:#f0f0f0;padding:14px 18px;margin-top:16px;font-size:14px;color:#555;line-height:1.65}
+.scenario-card__tip strong{color:var(--accent)}
+.quote{border-left:3px solid var(--accent);padding:12px 0 12px 18px;margin:26px 0;font-family:'Libre Baskerville',Georgia,serif;font-size:18px;font-style:italic;color:#333}
+.footer-note{font-family:'Libre Baskerville',Georgia,serif;font-size:18px;font-style:italic;color:#444;text-align:center;padding:48px 24px 0}
+.footer-note em{color:var(--accent)}
+.cta{background:#f5f5f5;text-align:center;padding:40px 24px;margin:56px 0 0}
+.cta__text{font-size:17px;color:#1a1a1a;line-height:1.7;margin-bottom:8px}
+.cta__sub{font-size:15px;color:#666;margin-bottom:0}
+.cta__link{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(113,12,4,.3)}
+.link{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(113,12,4,.3)}
+.footer{text-align:center;padding:64px 24px;border-top:1px solid #e8e8e8;margin-top:64px;color:#999;font-size:14px}
+@media screen and (max-width:768px){.nav{padding:16px 20px}.hero h1{font-size:28px}.section-heading{font-size:24px}.scenario-card{padding:20px}.prompt-box{padding:24px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav__logo">MS</div><span class="nav__logo-name">maysoulme</span></nav>
+<div class="container">
+<section class="hero">
+<span class="badge">Гайд</span>
+<h1>Как проверить и очистить <em>AI-метки в Claude</em></h1>
+<p class="hero__desc">Бесплатный skill, который проверяет текст и файлы, показывает скрытые следы и помогает их очистить.</p>
+<p class="hero__meta">1 skill · ~5 минут на установку · без сложного кода</p>
+</section>
+
+<p class="intro-bold">Я нашла бесплатный инструмент, который показывает, что ИИ реально оставляет внутри текста и файлов.</p>
+<p class="intro-text">Самое интересное здесь не «магическая кнопка против детекторов», а возможность сначала увидеть, что вообще осталось в материале, а уже потом решать, что с этим делать.</p>
+<div class="highlight">Проще всего поставить skill и первым делом прогнать через него какой-нибудь свой старый текст или файл. Так вы сразу увидите, что он находит именно у вас.</div>
+
+<h2 class="section-heading"><span>01.</span>Что вообще <em>изменилось</em></h2>
+<p class="text">Anthropic начала внедрять водяные знаки в тексты Claude. Отдельной кнопки «выключить» их нет, и просто перейти на другую нейросеть — не особо решение: вся индустрия постепенно движется в эту сторону.</p>
+<p class="text">И важный момент: скопировать текст в «Блокнот», сохранить в другом формате или перепечатать вручную здесь уже не помогает.</p>
+<div class="quote">Новый водяной знак находится не в файле, а в том, как модель выбирает слова.</div>
+
+<h2 class="section-heading"><span>02.</span>Как установить <em>инструмент</em></h2>
+<p class="text">Разработчик Guillaume Meyer выложил бесплатный open-source инструмент <strong>watermarks-remover</strong>. Нужный нам skill внутри называется <strong>remove-ai-marks</strong>.</p>
+<p class="text">GitHub: <a class="link" href="https://github.com/guillaumemeyer/watermarks-remover" target="_blank" rel="noopener">github.com/guillaumemeyer/watermarks-remover</a></p>
+<ol class="step-list">
+<li>Зайдите на GitHub проекта и нажмите <strong>Code → Download ZIP</strong>.</li>
+<li>Распакуйте архив.</li>
+<li>Откройте папку <strong>skills</strong> и отдельно заархивируйте <strong>remove-ai-marks</strong>.</li>
+<li>В Claude откройте <strong>Customize → Skills</strong>.</li>
+<li>Нажмите <strong>+ → Create skill → Upload a skill</strong> и загрузите ZIP.</li>
+<li>В <strong>Settings → Capabilities</strong> включите выполнение кода.</li>
+</ol>
+<div class="scenario-card__tip"><strong>Важно:</strong> последний пункт не пропускайте. Без выполнения кода skill может выглядеть сломанным, хотя проблема просто в настройке.</div>
+
+<h2 class="section-heading"><span>03.</span>Как им <em>пользоваться</em></h2>
+<p class="text">Введите команду:</p>
+<div class="prompt-box"><div class="prompt-box__title">Команда</div><div class="prompt-box__subtitle">Вставьте в Claude</div><p class="prompt-box__text">/remove-ai-marks</p></div>
+<p class="text">Дальше вставьте текст или прикрепите файл. Сначала инструмент ничего не меняет — он показывает, что вообще нашёл.</p>
+<div class="quote">Этот отчёт лучше не пролистывать — именно здесь видно реальный результат проверки.</div>
+
+<h3 class="sub-heading">Переписывание текста</h3>
+<p class="text">После проверки skill может предложить переписать текст. И вот здесь уже начинается выбор.</p>
+<ul class="guide-list">
+<li><strong>Лёгкое переписывание</strong> — больше сохраняет ваш стиль, но слабее меняет исходный текст.</li>
+<li><strong>Сильное переписывание</strong> — меняет текст заметнее, но может сделать его более безликим.</li>
+</ul>
+
+<div class="prompt-box"><div class="prompt-box__title">Промт 1</div><div class="prompt-box__subtitle">Более сильное изменение формулировок</div><p class="prompt-box__text">Rewrite the following text so that it uses substantially different wording at the token level. Change clause order, connectors, and transition words; vary sentence boundaries and length; and replace both content words and function words where meaning allows. Preserve all facts, numbers, names, and technical identifiers. Do not add or remove claims. Output only the rewritten text.
+
+---
+[paste your text here]</p></div>
+
+<div class="prompt-box"><div class="prompt-box__title">Промт 2</div><div class="prompt-box__subtitle">Более естественный вариант</div><p class="prompt-box__text">Rewrite the following text so it reads as if a human wrote it from scratch. Vary sentence rhythm and length, replace formulaic AI-style transitions and filler with concrete natural phrasing, and use plain, varied wording. Preserve all facts, numbers, names, and technical identifiers. Do not add or remove claims. Output only the rewritten text.
+
+---
+[paste your text here]</p></div>
+
+<div class="scenario-card__tip"><strong>После переписывания:</strong> прогоните очистку ещё раз. Новую версию тоже создаёт ИИ, поэтому он может снова добавить скрытые символы.</div>
+
+<h2 class="section-heading"><span>04.</span>Как работает <em>водяной знак</em></h2>
+<p class="text">У модели почти всегда есть несколько слов, которые подходят по смыслу. На длинном тексте выбор между ними может складываться в определённый паттерн.</p>
+<p class="text">Человек этого не замечает — текст выглядит обычным. Но специальная система может искать такой паттерн.</p>
+<div class="quote">То есть водяной знак зашит не в файл, а в сам выбор слов.</div>
+<p class="text">Поэтому смена оформления, заголовков или пары слов почти ничего не меняет. Сильнее исходный паттерн меняется только при серьёзном переписывании текста.</p>
+
+<h2 class="section-heading"><span>05.</span>Что инструмент <em>очищает</em></h2>
+<p class="text">По сути, он работает сразу в трёх местах:</p>
+
+<div class="scenario-card"><div class="scenario-card__num">01</div><div class="scenario-card__title">Скрытые символы</div><p class="text" style="margin-bottom:0">Находит невидимые символы и странные пробелы, которые могут оставаться после ИИ и иногда ломают форматирование.</p></div>
+<div class="scenario-card"><div class="scenario-card__num">02</div><div class="scenario-card__title">Сам текст</div><p class="text" style="margin-bottom:0">Предлагает переписать его через другую модель, чтобы сильнее изменить исходный выбор слов. Но гарантировать удаление водяного знака здесь нельзя.</p></div>
+<div class="scenario-card"><div class="scenario-card__num">03</div><div class="scenario-card__title">Данные внутри файлов</div><p class="text" style="margin-bottom:0">Может убирать часть технической информации из изображений, PDF, DOCX и других файлов.</p></div>
+<div class="quote">Это не одна магическая кнопка, а сразу несколько разных видов очистки.</div>
+
+<h2 class="section-heading"><span>06.</span>Где чаще всего <em>ошибаются</em></h2>
+<ul class="guide-list">
+<li><strong>Не включают выполнение кода.</strong> Skill есть, а работать ему нечем.</li>
+<li><strong>Переписывают Claude через Claude.</strong> Вы просто отдаёте текст той же модели и получаете ещё одну её версию.</li>
+<li><strong>Меняют всего пару фраз.</strong> Так большая часть исходного текста остаётся почти такой же.</li>
+<li><strong>Забывают про файлы.</strong> У изображений и документов тоже могут оставаться свои технические данные.</li>
+<li><strong>Не проверяют результат ещё раз</strong> после переписывания.</li>
+</ul>
+<div class="quote">Чем сильнее переписывание, тем сильнее меняется текст — и тем выше шанс потерять свой стиль.</div>
+
+<h2 class="section-heading"><span>07.</span>Но есть один <em>важный момент</em></h2>
+<div class="quote">Это не кнопка «теперь никто никогда не поймёт, что здесь был ИИ».</div>
+<p class="text">Скрытые символы и данные внутри файлов можно найти и удалить. А вот с водяным знаком внутри самого текста всё сложнее: у обычного пользователя нет доступа ко всем внутренним системам проверки компаний.</p>
+<p class="text">И ещё: водяной знак и AI-детектор — не одно и то же. Один может искать скрытый паттерн, другой — просто смотреть на стиль текста.</p>
+<p class="text">Поэтому даже очищенный текст какой-то детектор всё равно может посчитать «слишком ИИ-шным».</p>
+
+<div class="scenario-card"><div class="scenario-card__num">ТАК ЗАЧЕМ ОН ВООБЩЕ НУЖЕН?</div><div class="scenario-card__title">Чтобы увидеть и убрать лишние технические следы</div><p class="text" style="margin-bottom:0">Проверить скрытые символы, почистить файлы от лишних данных и понять, что вообще остаётся внутри материалов перед публикацией.</p></div>
+
+<p class="footer-note">Главная польза здесь — не «спрятать ИИ», а <em>нормально почистить всё перед публикацией</em>.</p>
+
+<div class="cta">
+<p class="cta__text">Если хотите больше таких AI-находок, новых инструментов и фишек, которые я сама тестирую — переходите в мой Telegram.</p>
+<p class="cta__text cta__sub">Там самое интересное обычно появляется раньше, чем я успеваю собрать из этого отдельный гайд — <a class="cta__link" href="https://t.me/maysoulme" target="_blank" rel="noopener">@maysoulme</a></p>
+</div>
+<div class="footer">© 2026 · maysoulme</div>
+</div>
+</body>
+</html>
