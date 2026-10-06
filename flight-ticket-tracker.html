@@ -47,7 +47,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .cta__link{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(113,12,4,.3)}
 .footer{text-align:center;padding:56px 24px;border-top:1px solid #e8e8e8;margin-top:56px;color:#999;font-size:14px}
 @media screen and (max-width:768px){
-.nav{grid-template-columns:auto 1fr auto auto;gap:12px;padding:18px 18px}.nav__logo img{height:38px}.nav__back{font-size:15px}.nav__logo-name{font-size:14px}.container{padding:0 18px}.hero{padding:58px 0 44px}.hero h1{font-size:31px;line-height:1.3}.hero__desc{font-size:17px;line-height:1.75}.hero__meta{font-size:13px;line-height:1.6}.section-heading{font-size:24px;padding-top:44px}.prompt-box{padding:22px 20px;margin:22px 0 16px}.prompt-box__text{font-size:14px;line-height:1.72}.scenario-card{padding:20px}.intro-bold{padding-top:34px}}
+.nav{grid-template-columns:auto 1fr auto;gap:12px;padding:18px 18px}.nav__logo img{height:38px}.nav__back{font-size:15px}.nav__logo-name{font-size:14px}.container{padding:0 18px}.hero{padding:58px 0 44px}.hero h1{font-size:31px;line-height:1.3}.hero__desc{font-size:17px;line-height:1.75}.hero__meta{font-size:13px;line-height:1.6}.section-heading{font-size:24px;padding-top:44px}.prompt-box{padding:22px 20px;margin:22px 0 16px}.prompt-box__text{font-size:14px;line-height:1.72}.scenario-card{padding:20px}.intro-bold{padding-top:34px}}
 </style>
 </head>
 <body>
@@ -71,13 +71,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 
 <p class="intro-text">А здесь можно один раз сказать ChatGPT, куда вы хотите лететь, какие даты вам подходят и какую цену вы ждёте. И дальше он уже сам возвращается к этой задаче по расписанию и присылает, что поменялось.</p>
 
-<p class="intro-text">Я бы только не пыталась засовывать всё в один огромный промпт. Намного понятнее сделать это по шагам.</p>
-
-<div class="quote">Маршрут → правила поиска → ежедневная проверка → отдельный сигнал, когда цена стала реально выгодной.</div>
+<div class="quote">Сначала задаём маршрут, потом правила поиска, ставим ежедневную проверку и в конце — отдельное уведомление на реально выгодную цену.</div>
 
 <h2 class="section-heading"><span>01.</span>Сначала скажите, <em>какой билет вам нужен</em></h2>
 
-<p class="text">На первом шаге вообще ничего не ищем. Просто даём все вводные, чтобы потом ChatGPT не гадал, что для вас считается нормальным вариантом.</p>
+<p class="text">Сначала просто напишите, какой именно билет вам нужен. Заполните маршрут, даты, багаж, пересадки и бюджет.</p>
 
 <div class="prompt-box">
 <div class="prompt-box__title">Промпт №1 — данные по поездке</div>
@@ -95,11 +93,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 Запомни эти условия для следующего сообщения и пока ничего не ищи.</div>
 </div>
 
-<p class="after-prompt"><strong>Зачем это нужно:</strong> чтобы дальше он сравнивал не какие-то абстрактные «дешёвые билеты», а именно ваши условия. Если вам важно не лететь ночью, не делать пересадку дольше пяти часов или нужен конкретный аэропорт — допишите это сюда же.</p>
+<p class="after-prompt">Если вам важно не лететь ночью, не делать пересадку дольше пяти часов или нужен конкретный аэропорт — допишите это сюда же.</p>
 
 <h2 class="section-heading"><span>02.</span>Теперь объясняем, <em>как именно искать</em></h2>
 
-<p class="text">Вот здесь уже говорим, на что смотреть каждый раз. Я специально вынесла это в отдельный промпт, потому что потом вы легко сможете поменять одно правило, не переписывая всё заново.</p>
+<p class="text">Следующим сообщением задайте правила, по которым ChatGPT будет сравнивать варианты.</p>
 
 <div class="prompt-box">
 <div class="prompt-box__title">Промпт №2 — правила поиска</div>
@@ -123,13 +121,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 5. коротко: брать сейчас или пока подождать.</div>
 </div>
 
-<p class="after-prompt"><strong>Что здесь важно:</strong> мы не просим просто «найди самое дешёвое». Потому что иначе вам спокойно могут принести билет с тремя пересадками и дорогой на сутки. Нужна не просто низкая цена, а нормальный вариант, который вы реально готовы купить.</p>
+<p class="after-prompt">Здесь лучше сразу оставить ваши реальные ограничения, чтобы в отчётах не появлялись дешёвые, но совершенно неудобные варианты.</p>
 
 <h2 class="section-heading"><span>03.</span>Теперь самое главное — <em>ставим это на автомат</em></h2>
 
-<p class="text">Вот здесь как раз и появляется та самая магия, когда вам не надо самой возвращаться в чат каждый день.</p>
-
-<p class="text">Нужна запланированная задача — <strong>Scheduled</strong>. Она будет сама запускать проверку по расписанию.</p>
+<p class="text">Теперь поставьте эту проверку на расписание. Для этого нужна запланированная задача — <strong>Scheduled</strong>.</p>
 
 <ol class="step-list">
 <li>Откройте в ChatGPT раздел <strong>Scheduled</strong>.</li>
@@ -167,15 +163,13 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 Если подходящего варианта нет — просто так и напиши. Без общих советов про путешествия.</div>
 </div>
 
-<p class="after-prompt"><strong>Что делаем после:</strong> сразу попросите ChatGPT запустить эту проверку один раз сейчас. Не ждите до завтра. Так вы сразу увидите, правильно ли он понял даты, багаж, пересадки и вообще нормально ли выглядит отчёт.</p>
+<p class="after-prompt">После сохранения сразу попросите ChatGPT запустить проверку один раз сейчас. Так вы сразу увидите, правильно ли он понял даты, багаж и пересадки.</p>
 
 <div class="highlight"><strong>И ещё момент:</strong> если Scheduled у вас в интерфейсе не видно, это не значит, что вы что-то сделали не так. Доступ к функциям может отличаться в зависимости от аккаунта и приложения.</div>
 
 <h2 class="section-heading"><span>04.</span>Отдельно говорим, <em>когда цена уже реально хорошая</em></h2>
 
-<p class="text">Потому что мне, например, не нужно отдельное «срочное» уведомление из-за того, что билет стал дешевле на тысячу рублей.</p>
-
-<p class="text">Поэтому задаём свой порог: либо конкретную сумму, либо процент падения.</p>
+<p class="text">Дальше задайте порог, при котором ChatGPT должен отдельно выделить цену: конкретную сумму или процент падения.</p>
 
 <div class="prompt-box">
 <div class="prompt-box__title">Промпт №4 — когда меня надо дёрнуть</div>
@@ -196,11 +190,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 Если цена не достигла этого условия, просто присылай обычный ежедневный отчёт.</div>
 </div>
 
-<p class="after-prompt"><strong>Зачем это нужно:</strong> чтобы среди обычных ежедневных отчётов вы сразу увидели тот момент, когда уже есть смысл открыть билет и посмотреть его нормально.</p>
+<p class="after-prompt">Когда условие сработает, в начале отчёта появится отдельная пометка «🔥 ЦЕНА УПАЛА».</p>
 
 <h2 class="section-heading"><span>05.</span>Билет нашёлся. <em>Что дальше?</em></h2>
 
-<p class="text">Вот здесь я бы не нажимала покупать вслепую. Цена могла успеть поменяться, багаж мог оказаться не включён, да и вообще лучше ещё раз сверить всё перед оплатой.</p>
+<p class="text">Когда подходящий билет найден, перед оплатой ещё раз перепроверьте цену, багаж, дату и аэропорты.</p>
 
 <div class="prompt-box">
 <div class="prompt-box__title">Финальный промпт — перед покупкой</div>
@@ -216,17 +210,17 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 Если цена уже изменилась — сразу скажи мне об этом.</div>
 </div>
 
-<p class="after-prompt"><strong>Дальше:</strong> если у вас есть Work, можно уже отдельно попросить ChatGPT открыть официальный сайт авиакомпании и пройти по шагам бронирования. Но я бы не смешивала это с ежедневным мониторингом — это уже отдельная задача.</p>
+<p class="after-prompt">Если у вас есть Work, после проверки можно отдельно попросить ChatGPT открыть официальный сайт авиакомпании и пройти по шагам бронирования.</p>
 
 <div class="scenario-card">
 <div class="scenario-card__num">ВСЯ СХЕМА</div>
-<div class="scenario-card__title">По сути, вам нужно всего четыре сообщения</div>
+<div class="scenario-card__title">Вся настройка по порядку</div>
 <p class="text" style="margin-bottom:0">1. Какой билет вам нужен.<br>2. Как ChatGPT должен сравнивать варианты.<br>3. Как часто он должен проверять и что присылать.<br>4. При какой цене вас уже надо отдельно уведомить.</p>
 </div>
 
-<p class="intro-text">И всё. Дальше вы не сидите сама каждый день на сайтах, не открываете пять вкладок и не пытаетесь вспомнить, сколько этот же билет стоил вчера.</p>
+<p class="intro-text">После этого ChatGPT сам запускает проверку по расписанию, присылает отчёт и отдельно показывает момент, когда цена дошла до вашего порога.</p>
 
-<div class="quote">Для меня в этом вообще весь кайф: ChatGPT здесь не «советует путешествовать выгоднее», а забирает на себя тупую повторяющуюся проверку.</div>
+<div class="quote">А вам остаётся только открыть подходящий вариант и перепроверить его перед покупкой.</div>
 
 <div class="cta">
 <p class="cta__text">Сохраните гайд и один раз нормально настройте свой маршрут.</p>
