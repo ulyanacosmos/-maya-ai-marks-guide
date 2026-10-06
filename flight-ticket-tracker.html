@@ -11,11 +11,8 @@
 :root{--accent:#710C04}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#1a1a1a;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid #efefef;position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);z-index:100}
-.nav__brand{display:flex;align-items:center;gap:12px}
-.nav__logo-box{width:54px;height:54px;border-radius:16px;background:#fff;border:1px solid #ececec;box-shadow:0 6px 20px rgba(0,0,0,.05);position:relative;overflow:hidden;flex:0 0 54px}
-.nav__m,.nav__s{position:absolute;font-family:'Libre Baskerville',Georgia,serif;color:#111;line-height:1;font-weight:400}
-.nav__m{font-size:31px;left:9px;top:12px;letter-spacing:-3px}
-.nav__s{font-size:29px;left:27px;top:11px;font-style:italic;letter-spacing:-2px}
+.nav__logo{font-family:'Libre Baskerville',Georgia,serif;font-size:34px;line-height:1;letter-spacing:-5px;color:#111}
+.nav__logo span:last-child{font-style:italic;margin-left:-7px}
 .nav__logo-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:400;font-style:italic;color:#888;letter-spacing:.4px}
 .container{max-width:760px;margin:0 auto;padding:0 24px}
 .hero{padding:56px 0 42px}
@@ -35,9 +32,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .step-list{list-style:none;margin:14px 0 24px;counter-reset:steps}
 .step-list li{counter-increment:steps;font-size:16px;line-height:1.7;color:#444;padding:9px 0 9px 44px;position:relative;border-bottom:1px solid #f0f0f0}
 .step-list li::before{content:counter(steps,decimal-leading-zero);position:absolute;left:0;font-family:'Libre Baskerville',Georgia,serif;font-style:italic;color:var(--accent)}
-.prompt-box{background:#f5f5f5;padding:30px;margin:24px 0 34px;border-radius:2px}
+.prompt-box{background:#f5f5f5;padding:30px;margin:24px 0 18px;border-radius:2px}
 .prompt-box__title{font-family:'Libre Baskerville',Georgia,serif;font-size:21px;font-weight:700;color:var(--accent);margin-bottom:6px}
 .prompt-box__text{font-size:15px;line-height:1.78;color:#333;white-space:pre-wrap}
+.after-prompt{font-size:15px;color:#666;line-height:1.7;margin:0 0 34px}
+.after-prompt strong{color:#222}
 .scenario-card{border:1px solid #e8e8e8;padding:28px;margin:24px 0;background:#fafafa}
 .scenario-card__num{font-family:'Libre Baskerville',Georgia,serif;font-style:italic;font-size:13px;color:var(--accent);letter-spacing:1px;margin-bottom:8px}
 .scenario-card__title{font-family:'Libre Baskerville',Georgia,serif;font-size:20px;font-weight:700;line-height:1.4;margin-bottom:12px}
@@ -47,15 +46,13 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .cta__link{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(113,12,4,.3)}
 .footer{text-align:center;padding:56px 24px;border-top:1px solid #e8e8e8;margin-top:56px;color:#999;font-size:14px}
 @media screen and (max-width:768px){
-.nav{padding:14px 18px}.nav__logo-box{width:50px;height:50px;flex-basis:50px}.nav__m{font-size:29px;left:8px;top:11px}.nav__s{font-size:27px;left:25px;top:10px}.nav__logo-name{font-size:14px}
-.container{padding:0 18px}.hero{padding:44px 0 36px}.hero h1{font-size:29px}.hero__desc{font-size:17px}.hero__meta{font-size:13px;line-height:1.55}.section-heading{font-size:24px;padding-top:44px}.prompt-box{padding:22px 20px;margin:22px 0 30px}.prompt-box__text{font-size:14px;line-height:1.72}.scenario-card{padding:20px}.intro-bold{padding-top:28px}}
+.nav{padding:14px 18px}.nav__logo{font-size:31px}.nav__logo-name{font-size:14px}
+.container{padding:0 18px}.hero{padding:44px 0 36px}.hero h1{font-size:29px}.hero__desc{font-size:17px}.hero__meta{font-size:13px;line-height:1.55}.section-heading{font-size:24px;padding-top:44px}.prompt-box{padding:22px 20px;margin:22px 0 16px}.prompt-box__text{font-size:14px;line-height:1.72}.scenario-card{padding:20px}.intro-bold{padding-top:28px}}
 </style>
 </head>
 <body>
 <nav class="nav">
-  <div class="nav__brand">
-    <div class="nav__logo-box" aria-label="MS"><span class="nav__m">M</span><span class="nav__s">S</span></div>
-  </div>
+  <div class="nav__logo" aria-label="MS"><span>M</span><span>S</span></div>
   <span class="nav__logo-name">maysoulme</span>
 </nav>
 
@@ -64,20 +61,22 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 <span class="badge">Гайд</span>
 <h1>Как ChatGPT сам <em>следит за ценами на билеты</em></h1>
 <p class="hero__desc">Один раз задаёте маршрут и условия — дальше ChatGPT сам проверяет цены по расписанию и пишет, когда появляется выгодный вариант.</p>
-<p class="hero__meta">4 промпта · 1 запланированная задача · уведомления приходят сами</p>
+<p class="hero__meta">4 промпта · 1 запланированная задача · дальше проверяет сам</p>
 </section>
 
-<p class="intro-bold">Я раньше сама по сто раз открывала сайты с билетами и сравнивала одни и те же даты.</p>
+<p class="intro-bold">Я вообще не понимаю, как раньше жила без этой штуки.</p>
 
-<p class="intro-text">А здесь можно один раз нормально объяснить ChatGPT, куда вы хотите лететь, какие даты вам подходят и какую цену вы ждёте.</p>
+<p class="intro-text">Потому что обычно как бывает: ты хочешь куда-то улететь, открываешь один сайт, потом второй, потом ещё соседние даты, потом думаешь: «а вдруг завтра дешевле?» — и через два дня опять сидишь и всё это проверяешь по кругу.</p>
 
-<p class="intro-text">И дальше всё идёт по шагам: <strong>маршрут → правила поиска → ежедневная проверка → уведомление, когда цена стала выгодной.</strong></p>
+<p class="intro-text">А здесь можно один раз сказать ChatGPT, куда вы хотите лететь, какие даты вам подходят и какую цену вы ждёте. И дальше он уже сам возвращается к этой задаче по расписанию и присылает, что поменялось.</p>
 
-<div class="quote">То есть не надо каждый день самой заходить и спрашивать: «ну что там с билетами?»</div>
+<p class="intro-text">Я бы только не пыталась засовывать всё в один огромный промпт. Намного понятнее сделать это по шагам.</p>
+
+<div class="quote">Маршрут → правила поиска → ежедневная проверка → отдельный сигнал, когда цена стала реально выгодной.</div>
 
 <h2 class="section-heading"><span>01.</span>Сначала скажите, <em>какой билет вам нужен</em></h2>
 
-<p class="text">Пока ничего не ищем. Просто даём ChatGPT все вводные по поездке.</p>
+<p class="text">На первом шаге вообще ничего не ищем. Просто даём все вводные, чтобы потом ChatGPT не гадал, что для вас считается нормальным вариантом.</p>
 
 <div class="prompt-box">
 <div class="prompt-box__title">Промпт №1 — данные по поездке</div>
@@ -95,11 +94,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 Запомни эти условия для следующего сообщения и пока ничего не ищи.</div>
 </div>
 
-<p class="text">Если вам важно не лететь ночью, не делать длинные пересадки или вы хотите только определённые аэропорты — просто добавьте это сюда же.</p>
+<p class="after-prompt"><strong>Зачем это нужно:</strong> чтобы дальше он сравнивал не какие-то абстрактные «дешёвые билеты», а именно ваши условия. Если вам важно не лететь ночью, не делать пересадку дольше пяти часов или нужен конкретный аэропорт — допишите это сюда же.</p>
 
 <h2 class="section-heading"><span>02.</span>Теперь объясняем, <em>как именно искать</em></h2>
 
-<p class="text">Отдельным сообщением задаём правила. Так потом проще поменять одну вещь и не переписывать весь запрос заново.</p>
+<p class="text">Вот здесь уже говорим, на что смотреть каждый раз. Я специально вынесла это в отдельный промпт, потому что потом вы легко сможете поменять одно правило, не переписывая всё заново.</p>
 
 <div class="prompt-box">
 <div class="prompt-box__title">Промпт №2 — правила поиска</div>
@@ -123,9 +122,13 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 5. коротко: брать сейчас или пока подождать.</div>
 </div>
 
-<h2 class="section-heading"><span>03.</span>Ставим <em>ежедневную проверку</em></h2>
+<p class="after-prompt"><strong>Что здесь важно:</strong> мы не просим просто «найди самое дешёвое». Потому что иначе вам спокойно могут принести билет с тремя пересадками и дорогой на сутки. Нужна не просто низкая цена, а нормальный вариант, который вы реально готовы купить.</p>
 
-<p class="text">Теперь нужна запланированная задача. Именно она будет возвращаться к этому маршруту сама, без вашего сообщения.</p>
+<h2 class="section-heading"><span>03.</span>Теперь самое главное — <em>ставим это на автомат</em></h2>
+
+<p class="text">Вот здесь как раз и появляется та самая магия, когда вам не надо самой возвращаться в чат каждый день.</p>
+
+<p class="text">Нужна запланированная задача — <strong>Scheduled</strong>. Она будет сама запускать проверку по расписанию.</p>
 
 <ol class="step-list">
 <li>Откройте в ChatGPT раздел <strong>Scheduled</strong>.</li>
@@ -163,14 +166,18 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 Если подходящего варианта нет — просто так и напиши. Без общих советов про путешествия.</div>
 </div>
 
-<div class="highlight"><strong>Сразу после настройки:</strong> попросите ChatGPT запустить проверку один раз сейчас. Так вы сразу увидите, правильно ли он понял даты, багаж, пересадки и формат отчёта.</div>
+<p class="after-prompt"><strong>Что делаем после:</strong> сразу попросите ChatGPT запустить эту проверку один раз сейчас. Не ждите до завтра. Так вы сразу увидите, правильно ли он понял даты, багаж, пересадки и вообще нормально ли выглядит отчёт.</p>
 
-<h2 class="section-heading"><span>04.</span>Говорим, <em>когда цена уже реально интересная</em></h2>
+<div class="highlight"><strong>И ещё момент:</strong> если Scheduled у вас в интерфейсе не видно, это не значит, что вы что-то сделали не так. Доступ к функциям может отличаться в зависимости от аккаунта и приложения.</div>
 
-<p class="text">Чтобы не реагировать на каждое изменение в тысячу рублей, отдельно задаём порог.</p>
+<h2 class="section-heading"><span>04.</span>Отдельно говорим, <em>когда цена уже реально хорошая</em></h2>
+
+<p class="text">Потому что мне, например, не нужно отдельное «срочное» уведомление из-за того, что билет стал дешевле на тысячу рублей.</p>
+
+<p class="text">Поэтому задаём свой порог: либо конкретную сумму, либо процент падения.</p>
 
 <div class="prompt-box">
-<div class="prompt-box__title">Промпт №4 — когда цена упала</div>
+<div class="prompt-box__title">Промпт №4 — когда меня надо дёрнуть</div>
 <div class="prompt-box__text">Добавь к этой задаче ещё одно правило.
 
 Если цена на подходящий мне вариант станет ниже [СУММА] или упадёт минимум на [ПРОЦЕНТ]% относительно предыдущих проверок, поставь в самое начало отчёта:
@@ -188,11 +195,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 Если цена не достигла этого условия, просто присылай обычный ежедневный отчёт.</div>
 </div>
 
-<p class="text">После этого схема уже работает сама: ChatGPT проверяет маршрут по расписанию, присылает отчёт и отдельно выделяет момент, когда цена стала действительно интересной.</p>
+<p class="after-prompt"><strong>Зачем это нужно:</strong> чтобы среди обычных ежедневных отчётов вы сразу увидели тот момент, когда уже есть смысл открыть билет и посмотреть его нормально.</p>
 
-<h2 class="section-heading"><span>05.</span>Перед покупкой <em>проверяем ещё раз</em></h2>
+<h2 class="section-heading"><span>05.</span>Билет нашёлся. <em>Что дальше?</em></h2>
 
-<p class="text">Цена могла поменяться уже после уведомления, поэтому перед оплатой лучше сделать одну быструю проверку.</p>
+<p class="text">Вот здесь я бы не нажимала покупать вслепую. Цена могла успеть поменяться, багаж мог оказаться не включён, да и вообще лучше ещё раз сверить всё перед оплатой.</p>
 
 <div class="prompt-box">
 <div class="prompt-box__title">Финальный промпт — перед покупкой</div>
@@ -208,16 +215,20 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 Если цена уже изменилась — сразу скажи мне об этом.</div>
 </div>
 
-<p class="text">Если у вас есть Work, дальше можно отдельно попросить ChatGPT открыть официальный сайт авиакомпании и пройти по шагам бронирования. Это уже отдельный этап, его не нужно смешивать с ежедневным мониторингом.</p>
+<p class="after-prompt"><strong>Дальше:</strong> если у вас есть Work, можно уже отдельно попросить ChatGPT открыть официальный сайт авиакомпании и пройти по шагам бронирования. Но я бы не смешивала это с ежедневным мониторингом — это уже отдельная задача.</p>
 
 <div class="scenario-card">
 <div class="scenario-card__num">ВСЯ СХЕМА</div>
-<div class="scenario-card__title">По сути, вам нужно четыре сообщения</div>
-<p class="text" style="margin-bottom:0">1. Какой билет нужен.<br>2. Как сравнивать варианты.<br>3. Как часто проверять и что присылать.<br>4. При какой цене вас уже надо уведомить отдельно.</p>
+<div class="scenario-card__title">По сути, вам нужно всего четыре сообщения</div>
+<p class="text" style="margin-bottom:0">1. Какой билет вам нужен.<br>2. Как ChatGPT должен сравнивать варианты.<br>3. Как часто он должен проверять и что присылать.<br>4. При какой цене вас уже надо отдельно уведомить.</p>
 </div>
 
+<p class="intro-text">И всё. Дальше вы не сидите сама каждый день на сайтах, не открываете пять вкладок и не пытаетесь вспомнить, сколько этот же билет стоил вчера.</p>
+
+<div class="quote">Для меня в этом вообще весь кайф: ChatGPT здесь не «советует путешествовать выгоднее», а забирает на себя тупую повторяющуюся проверку.</div>
+
 <div class="cta">
-<p class="cta__text">Сохраните гайд и один раз настройте свой маршрут.</p>
+<p class="cta__text">Сохраните гайд и один раз нормально настройте свой маршрут.</p>
 <p class="cta__text cta__sub">А все мои AI-находки и промпты я складываю в Telegram — <a class="cta__link" href="https://t.me/maysoulme" target="_blank" rel="noopener">@maysoulme</a></p>
 </div>
 
