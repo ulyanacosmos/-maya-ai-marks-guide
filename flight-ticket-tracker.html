@@ -11,8 +11,8 @@
 :root{--accent:#710C04}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#1a1a1a;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid #efefef;position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);z-index:100}
-.nav__logo{width:72px;height:72px;display:flex;align-items:center;justify-content:center;flex:0 0 72px;background:#fff;border:1px solid #eeeeee;border-radius:18px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
-.nav__logo img{display:block;width:48px;height:48px;object-fit:contain}
+.nav__logo{display:flex;align-items:center;justify-content:flex-start;flex:0 0 auto}
+.nav__logo img{display:block;height:46px;width:auto;object-fit:contain}
 .nav__logo-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:400;font-style:italic;color:#888;letter-spacing:.4px}
 .container{max-width:760px;margin:0 auto;padding:0 24px}
 .hero{padding:56px 0 42px}
@@ -46,7 +46,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .cta__link{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(113,12,4,.3)}
 .footer{text-align:center;padding:56px 24px;border-top:1px solid #e8e8e8;margin-top:56px;color:#999;font-size:14px}
 @media screen and (max-width:768px){
-.nav{padding:14px 18px}.nav__logo{width:68px;height:68px;flex-basis:68px;border-radius:17px}.nav__logo img{width:46px;height:46px}.nav__logo-name{font-size:14px}
+.nav{padding:14px 18px}.nav__logo{flex:0 0 auto}.nav__logo img{height:44px;width:auto}.nav__logo-name{font-size:14px}
 .container{padding:0 18px}.hero{padding:44px 0 36px}.hero h1{font-size:29px}.hero__desc{font-size:17px}.hero__meta{font-size:13px;line-height:1.55}.section-heading{font-size:24px;padding-top:44px}.prompt-box{padding:22px 20px;margin:22px 0 16px}.prompt-box__text{font-size:14px;line-height:1.72}.scenario-card{padding:20px}.intro-bold{padding-top:28px}}
 </style>
 </head>
