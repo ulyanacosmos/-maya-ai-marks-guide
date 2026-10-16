@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="ms-section" content="claude">
+  <meta name="ms-tag" content="Гайд">
+  <meta name="ms-title" content="Агенты вам пока не нужны">
+  <meta name="ms-desc" content="Как превратить повторяющиеся задачи в skills для Claude: через короткое интервью и без программирования.">
+  <title>Агенты вам пока не нужны</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital@1&amp;family=Inter:wght@400;500;600;700;800&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --accent: #710C04; --ink: #1a1a1a; --muted: #666; --line: #e8e8e8; --soft: #f5f5f5; --card: #f9f9f9; }
+    html { scroll-behavior: smooth; }
+    body { background: #fff; color: var(--ink); font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+    .nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,.96); border-bottom: 1px solid #f0f0f0; }
+    .nav__logo { display: flex; align-items: center; color: var(--ink); font: 700 22px/1 'Libre Baskerville', Georgia, serif; letter-spacing: -1px; text-decoration: none; }
+    .nav__name { color: #888; font: italic 14px/1 'DM Sans', sans-serif; letter-spacing: .5px; }
+    .container { max-width: 740px; padding: 0 24px; margin: 0 auto; }
+    .hero { padding: 64px 0 52px; }
+    .badge { display: inline-block; margin-bottom: 20px; padding: 5px 16px; border: 1px solid var(--accent); color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    h1, h2, h3 { font-family: 'Libre Baskerville', Georgia, serif; }
+    h1 { max-width: 680px; margin-bottom: 18px; font-size: 38px; line-height: 1.25; }
+    h1 em, h2 em, .footer-note em { color: var(--accent); font-style: italic; }
+    .hero__desc { max-width: 640px; color: var(--muted); font-size: 18px; line-height: 1.7; }
+    .hero__meta { margin-top: 16px; color: #999; font-size: 14px; letter-spacing: 1px; }
+    .intro-bold { padding: 40px 0 16px; font-size: 18px; font-weight: 700; line-height: 1.65; }
+    .text { margin-bottom: 16px; color: #444; }
+    .section-heading { padding: 56px 0 24px; border-top: 1px solid var(--line); font-size: 29px; line-height: 1.35; }
+    .section-heading span { margin-right: 8px; color: var(--accent); }
+    .sub-heading { padding: 34px 0 14px; font-size: 21px; line-height: 1.45; }
+    .highlight { margin: 24px 0; padding: 20px 24px; background: var(--soft); color: #444; font-size: 16px; }
+    .quote { margin: 28px 0; padding: 12px 0 12px 18px; border-left: 3px solid var(--accent); color: #333; font: italic 18px/1.6 'Libre Baskerville', Georgia, serif; }
+    .guide-list, .step-list { list-style: none; margin: 16px 0 28px; }
+    .guide-list li { position: relative; padding: 9px 0 9px 20px; border-bottom: 1px solid #f0f0f0; color: #444; font-size: 16px; }
+    .guide-list li::before { position: absolute; top: 20px; left: 0; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; content: ''; }
+    .guide-list li:last-child, .step-list li:last-child { border-bottom: 0; }
+    .step-list { counter-reset: steps; }
+    .step-list li { position: relative; counter-increment: steps; padding: 10px 0 10px 46px; border-bottom: 1px solid #f0f0f0; color: #444; font-size: 16px; }
+    .step-list li::before { position: absolute; left: 0; color: var(--accent); content: counter(steps, decimal-leading-zero); font: italic 16px/1.75 'Libre Baskerville', Georgia, serif; }
+    .scenario-card { margin: 24px 0; padding: 30px; border: 1px solid var(--line); background: var(--card); }
+    .scenario-card__num { margin-bottom: 8px; color: var(--accent); font: italic 14px/1.4 'Libre Baskerville', Georgia, serif; letter-spacing: 1px; }
+    .scenario-card__title { margin-bottom: 12px; font-size: 20px; line-height: 1.45; }
+    .scenario-card__text { color: #555; font-size: 15px; line-height: 1.7; }
+    .scenario-card__tip { margin-top: 18px; padding: 14px 18px; background: #f0f0f0; color: #555; font-size: 14px; line-height: 1.65; }
+    .scenario-card__tip strong { color: var(--accent); }
+    .prompt-box { margin: 30px 0; padding: 32px; background: var(--soft); }
+    .prompt-box__title { margin-bottom: 5px; color: var(--accent); font-size: 20px; line-height: 1.45; }
+    .prompt-box__subtitle { margin-bottom: 18px; color: #888; font-size: 13px; }
+    .prompt-box__text { white-space: pre-wrap; color: #444; font-size: 15px; font-style: italic; line-height: 1.8; }
+    .cta { margin-top: 56px; padding: 40px 24px; background: var(--soft); text-align: center; }
+    .cta__text { color: var(--ink); font-size: 17px; line-height: 1.7; }
+    .cta__sub { margin-top: 8px; color: var(--muted); font-size: 15px; }
+    .cta a { color: var(--accent); border-bottom: 1px solid rgba(113,12,4,.35); font-weight: 600; text-decoration: none; }
+    .footer-note { padding: 48px 24px 0; color: #444; text-align: center; font: italic 18px/1.7 'Libre Baskerville', Georgia, serif; }
+    .footer { margin-top: 64px; padding: 48px 24px; border-top: 1px solid var(--line); color: #999; font-size: 14px; text-align: center; }
+    @media (max-width: 768px) { .nav { padding: 16px 20px; } h1 { font-size: 29px; } .section-heading { font-size: 24px; } .prompt-box, .scenario-card { padding: 22px; } }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Навигация">
+    <a class="nav__logo" href="#top" aria-label="В начало">MS</a>
+    <span class="nav__name">maysoulme</span>
+  </nav>
+
+  <main class="container" id="top">
+    <section class="hero">
+      <span class="badge">Гайд</span>
+      <h1>Агенты вам пока <em>не нужны</em></h1>
+      <p class="hero__desc">Блин, сейчас все только и говорят про этих агентов. Но я бы вообще не с них начинала. Сначала соберите один skill под работу, которую вы и так делаете каждый день.</p>
+      <p class="hero__meta">~7 минут на чтение · 1 интервью · 1 готовый skill</p>
+    </section>
+
+    <p class="intro-bold">Кто-то кого-то себе «нанимает», кто-то уже собирает сложные связки — и кажется, что без этого вы отстали. Но если честно, у большинства сначала даже сама задача толком не описана. Что тогда автоматизировать-то?</p>
+    <p class="text">Мне здесь нравится другая логика: не строить робота, которого потом сидишь и пытаешься допилить, а сначала показать Claude, как вы делаете одну конкретную работу. Skill — это файл: что делать первым, что проверять по дороге и в какой момент работа уже готова.</p>
+    <div class="highlight">У вас пять повторяющихся задач? Не надо сразу городить пять агентов. Сделайте пять skills — по одному на каждую работу, которую вы и так уже умеете делать. И только потом смотрите, нужно ли вам вообще что-то сложнее.</div>
+
+    <h2 class="section-heading"><span>01.</span>Что такое <em>skill</em></h2>
+    <p class="text">Skill — это буквально файл, где обычными словами написано, как вы делаете свою работу. Без кода. Внутри — с чего вы начинаете, что делаете потом, на что смотрите и в какой момент говорите: «всё, готово».</p>
+    <div class="quote">Вы один раз объясняете задачу так, как объяснили бы её подружке или новому человеку в команде. А дальше Claude работает по этой логике.</div>
+    <p class="text">Мне в этом нравится вот что: не надо каждый раз выдумывать «правильный запрос». Один раз рассказали, как вы думаете внутри этой задачи, — и Claude уже не начинает с нуля.</p>
+    <p class="text">Так можно собрать отдельный skill для постов, сценариев, каруселей, разбора заявок, подготовки уроков или финальной проверки материала перед публикацией.</p>
+
+    <h2 class="section-heading"><span>02.</span>Когда skill правда <em>нужен</em></h2>
+    <p class="text">Не надо делать skill на всё подряд. Он нужен там, где вы снова и снова идёте одним и тем же маршрутом — и уже знаете, на каком шаге обычно зависаете или всё перепроверяете по три раза.</p>
+    <p class="text">И тут, кстати, быстро становится видно, где у вас не Claude тормозит, а сам процесс пока живёт у вас в голове кусками. Это не плохая новость. Наоборот: наконец можно это увидеть и разложить.</p>
+    <ul class="guide-list">
+      <li><strong>Задача повторяется.</strong> Например, каждую неделю вы собираете пост, сценарий или письмо примерно по одной логике.</li>
+      <li><strong>У вас уже есть свой порядок.</strong> Вы не делаете всё «как пойдёт», а знаете, что нужно проверить по дороге.</li>
+      <li><strong>Вы понимаете, что должно получиться.</strong> И сразу видите, если на выходе какая-то ерунда.</li>
+      <li><strong>Ошибки повторяются.</strong> Их проще один раз прописать в skill, чем потом каждый раз ловить руками.</li>
+    </ul>
+    <div class="scenario-card">
+      <div class="scenario-card__num">ПРИМЕР</div>
+      <h3 class="scenario-card__title">Skill для поста в блог</h3>
+      <p class="scenario-card__text">Туда можно положить: с какого тезиса вы обычно заходите, каким тоном говорите, какие примеры любите, что всегда проверяете и чем заканчиваете. Тогда Claude не пытается каждый раз «угадать вас» — он уже знает, по каким правилам собирать материал.</p>
+      <div class="scenario-card__tip"><strong>Мой вывод:</strong> если вы сами не можете объяснить, почему пост получился хорошим, Claude тоже не соберёт такой же. Сначала просто достаём вашу логику наружу.</div>
+    </div>
+
+    <h2 class="section-heading"><span>03.</span>Не нужно писать skill <em>самой</em></h2>
+    <p class="text">И тут обычно все говорят: «Ну я-то точно не смогу нормально это описать». И не надо. Не садитесь перед пустым файлом и не пытайтесь с первого раза написать инструкцию на века.</p>
+    <p class="text">Пусть Claude сам возьмёт у вас интервью. Он задаёт один вопрос за раз, а вы отвечаете как обычно — без терминов, схем и попытки звучать умно.</p>
+    <div class="prompt-box">
+      <h3 class="prompt-box__title">Промт для интервью</h3>
+      <p class="prompt-box__subtitle">Вставьте его в Claude и выберите одну задачу, для которой хотите сделать skill</p>
+      <p class="prompt-box__text">Помоги мне создать персональный skill для Claude под одну мою повторяющуюся задачу.
+
+Не пиши инструкцию сразу. Сначала проведи со мной интервью: задавай по одному короткому вопросу за раз и собирай мой реальный рабочий процесс.
+
+Узнай:
+— какая это задача и для кого результат;
+— с чего я обычно начинаю;
+— что делаю дальше и в каком порядке;
+— какие материалы или вводные мне нужны;
+— какие решения я принимаю по ходу;
+— как выглядит готовый результат;
+— где чаще всего всё ломается и что нельзя делать.
+
+Не придумывай шаги за меня. Если я отвечаю общо, помоги уточнить конкретный пример.
+
+Когда информации будет достаточно, сначала покажи короткую структуру skill и попроси меня подтвердить её. Только после подтверждения собери готовый файл навыка, понятный для установки в Claude.</p>
+    </div>
+    <p class="text">Он будет спрашивать что-то очень простое: «С чего у вас начинается эта задача?», «Что вы делаете потом?», «Как понимаете, что уже готово?», «Где обычно всё ломается?».</p>
+    <div class="scenario-card__tip"><strong>Важно:</strong> не надо отвечать «красиво». Расскажите, как делаете в реальности: с тупняками, своими проверками и вот этими «а тут я обычно пять раз перечитываю». Вот из этого и собирается нормальный skill.</div>
+
+    <h2 class="section-heading"><span>04.</span>Как собрать процесс <em>без воды</em></h2>
+    <p class="text">Только не берите сразу «всю работу с блогом». Это как попросить человека с порога стать вами. Выберите одну узкую задачу — тогда Claude правда поймёт, что от него нужно.</p>
+    <ol class="step-list">
+      <li>Выберите одну повторяющуюся задачу: например, подготовку сценария для Reels.</li>
+      <li>Вставьте промт для интервью и отвечайте на живом примере, а не рассказывайте в теории, как «обычно бывает».</li>
+      <li>Посмотрите на черновую структуру: не потерялся ли важный шаг, ограничение или ваша обычная проверка.</li>
+      <li>Попросите Claude собрать итоговый файл skill.</li>
+      <li>Проверьте его на одной настоящей задаче. Если чего-то не хватило — просто допишите это, не надо переделывать всё с нуля.</li>
+    </ol>
+    <div class="quote">Не пытайтесь сделать идеальный skill с первой попытки. Запустили на реальной задаче, увидели, где он тупит, — дописали одну строчку. Всё.</div>
+
+    <h2 class="section-heading"><span>05.</span>Как установить его в <em>Claude</em></h2>
+    <p class="text">Когда Claude соберёт файл, скачайте его на компьютер. Дальше — пара минут в настройках:</p>
+    <ol class="step-list">
+      <li>Откройте Claude и перейдите в настройки.</li>
+      <li>Найдите раздел <strong>Skills</strong>.</li>
+      <li>Нажмите добавление или загрузку skill.</li>
+      <li>Загрузите файл и назовите его так, чтобы потом самой не гадать, что там внутри.</li>
+      <li>Откройте новый чат и дайте ему первую настоящую задачу.</li>
+    </ol>
+    <p class="text">Всё. Теперь вам не надо каждый раз заново объяснять Claude, как вы привыкли работать. Выбираете нужный skill и кидаете ему материалы уже под конкретную задачу.</p>
+
+    <h2 class="section-heading"><span>06.</span>С чего начать <em>прямо сейчас</em></h2>
+    <p class="text">Возьмите то, что вы делаете чаще всего и что уже надоело объяснять заново. Не надо автоматизировать всю жизнь за один вечер. Выберите один кусок работы — тот, который вы каждый раз заново прокручиваете у себя в голове.</p>
+    <div class="scenario-card">
+      <div class="scenario-card__num">ДЛЯ БЛОГА</div>
+      <h3 class="scenario-card__title">Три skills, с которых можно начать</h3>
+      <ul class="guide-list">
+        <li><strong>Сценарий Reels:</strong> от идеи и живой истории до готового текста для суфлёра.</li>
+        <li><strong>Пост:</strong> от тезиса и примеров до финальной структуры и CTA.</li>
+        <li><strong>Карусель:</strong> от содержания до логики слайдов и проверки, ничего ли не потерялось.</li>
+      </ul>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-card__num">ЛИЧНО У МЕНЯ</div>
+      <h3 class="scenario-card__title">Для меня это вообще спасение</h3>
+      <p class="scenario-card__text">Я веду блог через Reels, посты и карусели. И у каждой из этих задач — свой порядок, свои мелочи и свои места, где легко всё запороть. Если каждый раз держать это в голове, я просто опять сажусь и объясняю Claude всё заново.</p>
+      <p class="scenario-card__text" style="margin-top: 14px;">А так у меня есть skills под разные задачи. Я не трачу время на одно и то же объяснение и не пытаюсь вспомнить: «Так, а что я обычно проверяю в самом конце?» Это уже лежит внутри skill.</p>
+      <div class="scenario-card__tip"><strong>И вот мой главный вывод:</strong> skill не придумывает за вас, о чём говорить и что вам вообще важно. Но он забирает всю повторяющуюся часть, на которую обычно уходит голова. Для меня — это спасение.</div>
+    </div>
+    <p class="footer-note">И да: вам не нужно становиться человеком, который «разбирается в агентах». Иногда достаточно один раз <em>нормально рассказать, как вы работаете</em> — и перестать тащить всё в голове.</p>
+
+    <section class="cta">
+      <p class="cta__text">Хотите забрать этот промт и собрать свои skills?</p>
+      <p class="cta__sub">Напишите в комментариях слово <strong>«навык»</strong> — пришлю промт вместе с инструкцией.</p>
+    </section>
+  </main>
+  <footer class="footer">© 2026 · maysoulme</footer>
+</body>
+</html>
