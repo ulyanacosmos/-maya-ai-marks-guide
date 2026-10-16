@@ -17,7 +17,8 @@
     html { scroll-behavior: smooth; }
     body { background: #fff; color: var(--ink); font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
     .nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,.96); border-bottom: 1px solid #f0f0f0; }
-    .nav__logo { display: flex; align-items: center; color: var(--ink); font: 700 22px/1 'Libre Baskerville', Georgia, serif; letter-spacing: -1px; text-decoration: none; }
+    .nav__logo { display: flex; align-items: center; text-decoration: none; }
+    .nav__logo img { display: block; width: auto; height: 30px; }
     .nav__name { color: #888; font: italic 14px/1 'DM Sans', sans-serif; letter-spacing: .5px; }
     .container { max-width: 740px; padding: 0 24px; margin: 0 auto; }
     .hero { padding: 64px 0 52px; }
@@ -62,7 +63,7 @@
 </head>
 <body>
   <nav class="nav" aria-label="Навигация">
-    <a class="nav__logo" href="#top" aria-label="В начало">MS</a>
+    <a class="nav__logo" href="#top" aria-label="В начало"><img src="logo-ms.png" alt="MS"></a>
     <span class="nav__name">maysoulme</span>
   </nav>
 
