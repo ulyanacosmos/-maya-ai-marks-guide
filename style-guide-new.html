@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff"><meta name="description" content="Персональная осенне-зимняя капсула с помощью ChatGPT: пошаговый гайд и готовый промпт от Майи.">
+<title>Найди свой стиль с ChatGPT — MAYA SOUL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=DM+Sans:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#710C04;--ink:#1b1b1b;--muted:#666;--line:#e9e7e5;--soft:#f6f5f3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:white;color:var(--ink);font:16px/1.75 Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+nav{border-bottom:1px solid var(--line);padding:17px max(22px,calc((100vw - 1020px)/2));display:flex;justify-content:space-between;align-items:center}
+.logo{font:700 24px 'Libre Baskerville',Georgia,serif;letter-spacing:-1px}.name{font:italic 14px 'DM Sans',sans-serif;color:#888}
+main{max-width:760px;padding:0 24px;margin:auto}.hero{padding:70px 0 54px}.eyebrow{display:inline-block;border:1px solid var(--wine);color:var(--wine);padding:4px 14px;letter-spacing:2px;text-transform:uppercase;font-size:11px;font-weight:700;margin-bottom:22px}
+h1,h2,h3{font-family:'Libre Baskerville',Georgia,serif;line-height:1.32}h1{font-size:clamp(31px,6vw,49px);letter-spacing:-1.5px;margin:0 0 22px}h1 em,h2 em{color:var(--wine)}.lead{font-size:19px;color:#555;line-height:1.7;margin:0}.meta{font-size:13px;color:#999;letter-spacing:.5px;margin-top:18px}
+.intro{font-size:18px;margin:0 0 20px}.intro strong{color:var(--ink)}.callout{background:var(--soft);padding:23px 26px;margin:28px 0 40px}
+h2{font-size:clamp(24px,4vw,31px);border-top:1px solid var(--line);padding-top:48px;margin:48px 0 20px}h2 .num{color:var(--wine);margin-right:10px}p{margin:0 0 17px;color:#444}ol.steps{padding:0;list-style:none;counter-reset:s}ol.steps li{counter-increment:s;position:relative;padding:14px 0 14px 45px;border-bottom:1px solid var(--line)}ol.steps li:before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:14px;color:var(--wine);font-family:'Libre Baskerville',Georgia,serif;font-style:italic}
+.prompt{background:var(--soft);padding:28px;margin:26px 0 20px}.prompt-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}.prompt-title{font:700 20px 'Libre Baskerville',Georgia,serif;color:var(--wine)}button{border:0;background:var(--wine);color:white;padding:12px 17px;font:600 13px Inter,Arial,sans-serif;cursor:pointer;min-height:44px}button:focus-visible{outline:3px solid #a77;outline-offset:3px}button:hover{background:#530800}
+pre{font:14px/1.8 Inter,Arial,sans-serif;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;color:#333;max-height:570px;overflow:auto;scrollbar-color:#ccc transparent}
+.note{font-size:14px;color:#777}.quote{border-left:3px solid var(--wine);padding:10px 0 10px 18px;font:italic 19px/1.6 'Libre Baskerville',Georgia,serif;margin:32px 0}
+.cta{text-align:center;background:var(--soft);padding:40px 25px;margin:55px 0 60px}.cta a{color:var(--wine);font-weight:700;text-decoration:none;border-bottom:1px solid #c99}footer{text-align:center;color:#aaa;border-top:1px solid var(--line);padding:30px 15px;font-size:13px}
+@media(max-width:600px){.hero{padding:48px 0 42px}main{padding:0 18px}.prompt{padding:20px}h2{padding-top:38px;margin-top:38px}pre{max-height:480px}}
+</style></head><body>
+<nav><div class="logo">MS</div><div class="name">maysoulme</div></nav><main>
+<header class="hero"><span class="eyebrow">Гайд · стиль</span><h1>Как найти свой стиль и собирать <em>образы, которые выглядят дорого</em></h1><p class="lead">Загружаете свои фотки, вставляете один промт, и чат GPT разбирает вашу внешность, собирает готовые образы и целую капсулу на холода.</p><div class="meta">1 промт · 4 шага · STYLE DNA CAPSULE</div></header>
+<p class="intro"><strong>Девчонки, это тот самый промт из ролика 🤍</strong></p>
+<p class="intro">Я обожаю листать образы в Пинтересте, но вы сами знаете: там это смотрится идеально, а на тебе — вообще не то. Потому что эти образы собраны не под вашу фигуру.</p>
+<p class="intro">Поэтому здесь всё наоборот. Сначала чат GPT смотрит на вас: пропорции, черты, цветотип. И только потом собирает капсулу, которая подходит именно вам.</p>
+<div class="callout"><strong>Что вы получите:</strong><ul><li>разбор ваших пропорций и силуэта;</li><li>ваш личный STYLE DNA, то есть что вам реально идёт;</li><li>6–8 готовых образов на осень и зиму;</li><li>картинку с капсулой, с которой удобно идти по магазинам.</li></ul></div>
+<h2><span class="num">01.</span>Подготовьте <em>фотки</em></h2>
+<p>Открываете новый чат в чат GPT и загружаете несколько фоток. Лицо при дневном свете и в полный рост, лучше в чём-то облегающем.</p>
+<p>Только без фильтров, без широкоугольной камеры и без сложных поз, иначе он неправильно поймёт ваши пропорции. А если ему не хватит ракурсов, он сам попросит ещё фотки, а не будет додумывать.</p>
+<h2><span class="num">02.</span>Вставьте <em>промт</em></h2>
+<p>Копируете промт целиком и отправляете в тот же чат, где фотки. Он специально такой подробный, чтобы чат GPT не выдал вам общие советы из серии «носите базу».</p>
+<div class="prompt"><div class="prompt-top"><div class="prompt-title">Промт — STYLE DNA CAPSULE</div><button id="copy" type="button">Скопировать промт</button></div><pre id="prompt-text">Представь, что ты мой персональный стилист и имидж-консультант с опытом создания индивидуальных гардеробов.
+
+Я загружу свои фотографии, а ты проанализируешь мою внешность и создашь персональную STYLE DNA CAPSULE на осень–зиму — с подходящими цветами, силуэтами, фасонами и готовыми образами.
+
+Мне нужен не набор универсальных модных советов, а конкретные рекомендации, основанные на моей внешности, пропорциях и индивидуальной эстетике.
+
+1. Проанализируй мою внешность
+
+По фотографиям определи:
+
+* Пропорции фигуры: соотношение плеч, талии, бёдер, длины ног и корпуса.
+* Особенности лица, масштаб и характер черт.
+* Преобладающие линии внешности: мягкие, плавные, чёткие или графичные.
+* Контрастность внешности и подходящие цветовые сочетания.
+* Какие силуэты, посадки, длины и объёмы наиболее гармоничны для меня.
+
+Объясни, какие особенности внешности стоит подчеркнуть одеждой и какие пропорции можно визуально сбалансировать.
+
+2. Определи мой STYLE DNA
+
+Сформулируй мою индивидуальную стилистическую эстетику через 3–5 характеристик.
+
+Подбери подходящие направления стиля, цветовую палитру, материалы и фактуры.
+
+Дай конкретные рекомендации по фасонам свитеров, жакетов, джинсов, брюк, платьев, верхней одежды, обуви и аксессуаров.
+
+Объясни, какие вещи особенно хорошо работают с моими пропорциями, а какие стоит выбирать осторожнее.
+
+3. Собери персональную капсулу на осень–зиму
+
+Подбери 6–8 готовых образов для холодного сезона, включая:
+
+* Повседневные комплекты.
+* Элегантные образы для встреч и мероприятий.
+* Комфортные образы для прогулок и поездок.
+
+Используй пальто, куртки, трикотаж, джинсы, брюки, тёплую обувь, сумки и аксессуары.
+
+Учитывай многослойность, сочетание фактур, практичность и сезонность.
+
+Все вещи должны сочетаться между собой, чтобы из небольшой капсулы можно было составить несколько разных комплектов.
+
+4. Создай визуальную STYLE DNA CAPSULE
+
+После анализа сгенерируй отдельное изображение моей персональной осенне-зимней капсулы.
+
+Оформи его как профессиональный fashion moodboard в эстетике Pinterest / fashion editorial.
+
+На изображении должны быть:
+
+* Название и ключевые характеристики моего STYLE DNA.
+* Персональная цветовая палитра.
+* 6–8 готовых комплектов одежды.
+* Подходящие модели верхней одежды, обуви, сумок и аксессуаров.
+* Примеры фактур и гармоничных сочетаний.
+
+Требования к визуалу:
+
+* Вертикальный формат 4:5.
+* Светлый нейтральный фон.
+* Реалистичные вещи, которые можно найти в магазинах.
+* Стильная, аккуратная композиция без визуального перегруза.
+* Минимум текста, только короткие подписи.
+* Все образы должны соответствовать анализу моей внешности.
+
+Важно: мне нужно именно сгенерированное изображение с готовой капсулой, а не текстовое описание коллажа.
+
+Как работать
+
+Сначала изучи мои фотографии. Если их недостаточно для достоверного анализа, попроси дополнительные снимки или уточнения.
+
+Не придумывай особенности внешности, которые невозможно определить по фото. Учитывай мои предпочтения и не используй жёсткие типологии как абсолютную истину.
+
+Затем последовательно предоставь:
+
+1. Краткий, но содержательный анализ внешности.
+2. Мой STYLE DNA и персональные рекомендации по одежде.
+3. Список 6–8 осенне-зимних образов.
+4. Отдельное сгенерированное изображение STYLE DNA CAPSULE.
+
+Главная цель — получить красивую и практичную персональную капсулу, которую я смогу сохранить и использовать во время шопинга.</pre></div>
+<p class="note">Если не копируется, просто выделите текст вручную.</p>
+<h2><span class="num">03.</span>Посмотрите, что <em>вам идёт</em></h2>
+<p>Сначала чат GPT расскажет, какие у вас пропорции и линии, какие силуэты и посадки вам подходят и с чем лучше быть аккуратнее. Дальше он подберёт палитру, фактуры, вещи и 6–8 готовых сочетаний.</p>
+<div class="quote">Он не придумывает вам новый стиль, он просто показывает, что на вас работает.</div>
+<p>А если вам что-то не нравится, так ему и напишите: какие цвета, фасоны или вещи вы не носите. И попросите пересобрать капсулу.</p>
+<h2><span class="num">04.</span>Сохраните <em>капсулу</em></h2>
+<p>В конце у вас будет картинка в формате 4:5: палитра, образы, обувь, сумки и аксессуары, прямо как мудборд.</p>
+<p>Сохраняете её себе в телефон, и с ней очень удобно идти за покупками.</p>
+<p>Если вдруг пришёл только текст, ничего страшного. Оставайтесь в том же чате и попросите отдельно сделать картинку вот этим промтом:</p><div class="prompt"><div class="prompt-top"><div class="prompt-title">Промт для картинки</div><button id="copy-image" type="button">Скопировать промт</button></div><pre id="image-prompt">Теперь сгенерируй именно отдельное изображение моей STYLE DNA CAPSULE по уже готовому анализу, в формате 4:5. Не описывай коллаж текстом</pre></div>
+<div class="cta"><p><strong>Попробуйте и обязательно напишите мне, что у вас получилось 🤍</strong></p><p>А ещё больше таких промтов, нейронок и разборов у меня в Telegram-канале <a href="https://t.me/maysoulme" target="_blank" rel="noopener noreferrer">@maysoulme</a>.</p></div>
+</main><footer>MAYA SOUL · AI / CONTENT / GROWTH</footer>
+<script>
+const btn=document.getElementById('copy');btn.addEventListener('click',async()=>{const value=document.getElementById('prompt-text').textContent;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(value)}else{const t=document.createElement('textarea');t.value=value;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();if(!document.execCommand('copy'))throw Error('copy');t.remove()}btn.textContent='Скопировано ✓'}catch(e){btn.textContent='Выделите текст вручную'}setTimeout(()=>btn.textContent='Скопировать промпт',2500)});
+document.getElementById('copy-image').addEventListener('click',async()=>{const b=document.getElementById('copy-image'),t=document.getElementById('image-prompt').textContent;try{await navigator.clipboard.writeText(t);b.textContent='Скопировано ✓'}catch(e){b.textContent='Выделите текст вручную'}setTimeout(()=>b.textContent='Скопировать промт',2500)});
+</script></body></html>
