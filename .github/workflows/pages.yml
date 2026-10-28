@@ -25,6 +25,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Verify Grok guide exists
+        run: |
+          test -f grok-maya-illustrated-v2.html
+          grep -q 'bot-art' grok-maya-illustrated-v2.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
